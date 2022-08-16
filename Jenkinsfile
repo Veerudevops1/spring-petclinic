@@ -31,6 +31,14 @@ pipeline {
                 junit testResults: '**/*.xml'
             }
         }
+         stage("Quality Gate") {
+            steps {
+              timeout(time: 1, unit: 'HOURS') {
+                waitForQualityGate abortPipeline: true
+              }
+            }
+          }
+
 
     }
 
